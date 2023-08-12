@@ -21,7 +21,10 @@ func ExtractNames(vars map[string]string) []string {
 	names := make([]string, 0)
 
 	for n := range vars {
-		names = append(names, n)
+		cn := strings.TrimSpace(n)
+		if len(cn) > 0 {
+			names = append(names, cn)
+		}
 	}
 
 	return names
