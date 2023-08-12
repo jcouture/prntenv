@@ -54,7 +54,7 @@ func main() {
 }
 
 func printVar(n, v string) {
-	fmt.Printf("%v=%v\n", color.HiGreenString(n), color.CyanString(v))
+	fmt.Printf("%v=%v\n", color.HiGreenString(n), color.HiBlueString(v))
 }
 
 func printVars(names []string, vars map[string]string) {
