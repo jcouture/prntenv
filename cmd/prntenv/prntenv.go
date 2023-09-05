@@ -3,11 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
 	"sort"
 
 	"github.com/fatih/color"
-	"github.com/jcouture/prntenv/internal/env"
+	"github.com/jcouture/env"
 	"github.com/lithammer/fuzzysearch/fuzzy"
 )
 
@@ -36,8 +35,8 @@ func main() {
 		color.NoColor = true
 	}
 
-	vars := env.ExtractVariables(os.Environ())
-	names := env.ExtractNames(vars)
+	vars := env.Getvars()
+	names := env.Getnames(vars)
 
 	if flagSort {
 		sort.Strings(names)
