@@ -12,19 +12,26 @@ builds:
         - CGO_ENABLE=0
       ldflags:
         - -s -w
-    id: macos
+    id: darwin
     goos: [darwin]
     goarch: [amd64, arm64]
   
   - <<: *build_defaults
     id: linux
     goos: [linux]
-    goarch: [386, arm, amd64, arm64]
+    goarch: [386, amd64, arm, arm64]
 
   - <<: *build_defaults
     id: windows
     goos: [windows]
     goarch: [386, amd64, arm, arm64]
+
+upx:
+  - enabled: true
+    goos: [darwin, linux, windows]
+    compress: best
+    lzma: true
+    brute: true
 
 checksum:
   name_template: 'checksums.txt'
@@ -35,3 +42,13 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+brews:
+  - repository:
+      owner: jcouture
+      name: homebrew-prntenv
+    folder: Formula
+    homepage:  https://github.com/jcouture/prntenv
+    description: Utility to print out the names and values of the variables in the environment
+    test: |
+      system "#{bin}/prntenv"
