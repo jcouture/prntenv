@@ -15,7 +15,7 @@ builds:
     id: darwin
     goos: [darwin]
     goarch: [amd64, arm64]
-  
+
   - <<: *build_defaults
     id: linux
     goos: [linux]
@@ -34,21 +34,21 @@ upx:
     brute: true
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
+      - "^docs:"
+      - "^test:"
 
 brews:
   - repository:
       owner: jcouture
       name: homebrew-prntenv
     folder: Formula
-    homepage:  https://github.com/jcouture/prntenv
+    homepage: https://github.com/jcouture/prntenv
     description: Utility to print out the names and values of the variables in the environment
     test: |
       system "#{bin}/prntenv"
