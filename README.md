@@ -1,6 +1,10 @@
 # prntenv
 
-Utility to print out the names and values of the variables in the environment
+Utility to print out the names and values of the variables in the environment.
+
+**⚠️ Warning**
+
+Environment variables are case sensitive.
 
 ## Installation
 
@@ -45,6 +49,38 @@ If `Go` is not installed, follow the instructions on the [Go website](https://go
 ```
 
 While the development version is a good way to take a peek at `prntenv`’s latest features before they get released, be aware that it may contains bugs. Officially released versions will generally be more stable.
+
+# Usage
+
+Print the entire environment out:
+
+```sh
+~> prntenv
+```
+
+Without colorized output:
+
+```sh
+~> prntenv -no-color
+```
+
+Alphabetically sorted, by variable name:
+
+```sh
+~> prntenv -sort
+```
+
+Search for variables (default is case sensitive):
+
+```sh
+~> prntenv HOM
+```
+
+Search for variables (ignoring case):
+
+```sh
+~> prntenv -ignore-case Pat
+```
 
 # License
 
