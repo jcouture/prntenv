@@ -30,6 +30,7 @@ import (
 	"github.com/lithammer/fuzzysearch/fuzzy"
 )
 
+var flagIgnoreCase bool
 var flagNoColor bool
 var flagSort bool
 
@@ -44,8 +45,10 @@ func init() {
 		flag.PrintDefaults()
 	}
 
+	flag.BoolVar(&flagIgnoreCase, "ignore-case", false, "Ignore case distinctions in name")
 	flag.BoolVar(&flagNoColor, "no-color", false, "Disable color output")
 	flag.BoolVar(&flagSort, "sort", false, "Sort alphabetically by name")
+
 }
 
 func main() {
@@ -65,7 +68,12 @@ func main() {
 	name := flag.Arg(0)
 
 	if name != "" {
-		matches := fuzzy.FindFold(name, names)
+		var matches []string
+		if flagIgnoreCase {
+			matches = fuzzy.FindNormalizedFold(name, names)
+		} else {
+			matches = fuzzy.FindNormalized(name, names)
+		}
 		printVars(matches, vars)
 	} else {
 		printVars(names, vars)
