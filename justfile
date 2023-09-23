@@ -26,7 +26,7 @@ docker_local_image := "jcouture/prntenv:" + docker_tag
 
 # Update dependencies
 @go-mod-update:
-  go get -u
+  go get -d -u ./...
   go mod tidy
 
 # Dry-run GoReleaser
