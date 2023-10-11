@@ -1,13 +1,13 @@
 name: Release
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - "*"
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   release:
@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: goreleaser/goreleaser-action@v5
+        if: success() && startsWith(github.ref, 'refs/tags/')
         with:
           version: latest
           args: release --clean
