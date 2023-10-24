@@ -41,13 +41,6 @@ dockers:
     - --label=org.opencontainers.image.revision={{ .FullCommit }}
     - --label=org.opencontainers.image.licenses=MIT
 
-upx:
-  - enabled: true
-    goos: [darwin, linux, windows]
-    compress: best
-    lzma: true
-    brute: true
-
 checksum:
   name_template: "checksums.txt"
 
